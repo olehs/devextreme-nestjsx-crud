@@ -1,0 +1,21 @@
+{
+  "name": "devextreme-nestjsx-crud",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint:fix": "eslint --fix *.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oleg Sokolov",
+  "license": "MIT",
+  "dependencies": {
+    "@nestjsx/crud-request": "^4.6.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.5.0"
+  },
+  "peerDependencies": {
+    "devextreme": "^20.0.0"
+  }
+}
