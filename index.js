@@ -85,14 +85,11 @@ function createSearch(filter, negate = false) {
   const unary = (v) =>
     v[0] === "!" ? createSearch(v[1], !negate) : complex([v[0], "and", v[1]]);
 
-  const binary = (v) =>
-    ["or", "and"].includes(v[1])
-      ? complex(v)
-      : {
-          [v[0]]: {
-            [getOp(v[1], negate)]: createSearch(v[2], negate),
-          },
-        };
+  const binary = (v) => ({
+    [v[0]]: {
+      [getOp(v[1], negate)]: createSearch(v[2], negate),
+    },
+  });
 
   const complex = (v) => ({
     [getOp(v[1], negate)]: [
@@ -109,7 +106,9 @@ function createSearch(filter, negate = false) {
       return unary(filter);
 
     case 3:
-      return binary(filter);
+      return ["or", "and"].includes(filter[1])
+        ? complex(filter)
+        : binary(filter);
 
     default:
       return null;
